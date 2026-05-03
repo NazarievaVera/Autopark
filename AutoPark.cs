@@ -120,7 +120,7 @@ namespace Car_Dealership
                     c.DisplayInfo();
                 }
             }
-
+ 
             Console.WriteLine($"Баланс: {_balance} руб.");
         }
     }
