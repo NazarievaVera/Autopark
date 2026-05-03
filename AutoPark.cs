@@ -7,7 +7,7 @@ namespace Car_Dealership
         public abstract string Type { get; }
         public decimal Price { get; }
         public int Year { get; }
-
+ 
         public Info(string id,string model, int year,decimal price)
         {
             Id = id;
