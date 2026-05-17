@@ -6,6 +6,8 @@ class Program
     {
         AutoPark park = new AutoPark(10000000);
         park.InitCar();
+        
+        var lada = new Car("New Lada", 2020, 3_450_000);
         bool isRunning = true;
 
         while (isRunning)
@@ -27,9 +29,18 @@ class Program
                     break;
 
                 case "2":
-                    Console.Write("Введите ID машины для продажи: ");
-                    string idToDelete = Console.ReadLine();
-                    park.Delete(idToDelete);
+                    Console.Write("Введите № машины для продажи: ");
+                    // проверка на ввод
+                    string input = Console.ReadLine();
+                    if (int.TryParse(input, out int numToDelete))
+                    {
+                        park.Delete(numToDelete);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка: нужно ввести число!");
+                    }
+
                     break;
 
                 case "3":
@@ -37,8 +48,8 @@ class Program
                     Console.Write("Купить? (y/n): ");
                     if (Console.ReadLine().ToLower() == "y")
                     {
-                        var car4 = new Car("C004", "New Lada", 2020, 3450000);
-                        park.Add(car4);
+                        
+                        park.Add(lada);
                     }
                     else
                     {
