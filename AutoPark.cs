@@ -1,42 +1,41 @@
+using Car_Dealership.Models;
 namespace Car_Dealership
 {
     public abstract class Info
     {
         public string Id { get; } 
         public string Model { get; }
-        public abstract string Type { get; }
+        public VehicleType Type { get; }
         public decimal Price { get; }
         public int Year { get; }
  
-        public Info(string id,string model, int year,decimal price)
+        public Info(string id,string model, int year,decimal price, VehicleType type)
         {
             Id = id;
             Model = model;
             Price = price;
             Year = year;
+            Type = type;
         }
 
         public void DisplayInfo()
         {
-            Console.WriteLine($"ID: {Id} ,{Type} | {Model} ({Year} г.) | Цена: {Price}");
+            Console.WriteLine($"ID: {Id} ,{Type.GetTypeName()} | {Model} ({Year} г.) | Цена: {Price}");
         }
     }
     public class Car:Info
     {
-      public  override string Type => "Легковая";
-      public Car(string id, string model, int year,decimal price) : base(id, model, year,price){}
+      public Car(string id, string model, int year,decimal price) : base(id, model, year,price,VehicleType.Car){}
     }
 
     public class Bus : Info
     {
-        public override string Type => "Автобус";
-        public Bus(string id, string model, int year,decimal price) : base(id, model, year,price){}
+        public Bus(string id, string model, int year,decimal price) : base(id, model, year,price,VehicleType.Bus){}
     }
 
     public class Truck : Info
     {
-        public override string Type => "Грузовик";
-        public Truck(string id, string model, int year,decimal price) : base(id, model, year,price){}
+        public Truck(string id, string model, int year,decimal price) : base(id, model, year,price, VehicleType.Truck){}
     }
     
     //Деньги и тачки
