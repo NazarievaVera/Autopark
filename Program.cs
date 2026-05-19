@@ -1,5 +1,5 @@
 ﻿using Car_Dealership;
-
+using Car_Dealership.Models; 
 class Program
 {
     static void Main(string[] args)
@@ -60,7 +60,7 @@ class Program
 
                 case "0":
                     isRunning = false;
-                    Console.WriteLine("До свидания!");
+                    Console.WriteLine("До свидания!"); 
                     break;
                 default:
                     Console.WriteLine("Неверный ввод. Попробуйте снова.");
