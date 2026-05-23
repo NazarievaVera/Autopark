@@ -1,12 +1,13 @@
 ﻿using Car_Dealership;
-using Car_Dealership.Models; 
+using Car_Dealership.Models;
+
 class Program
 {
     static void Main(string[] args)
     {
         AutoPark park = new AutoPark(10000000);
         park.InitCar();
-        
+
         var lada = new Car("New Lada", 2020, 3_450_000);
         bool isRunning = true;
 
@@ -48,7 +49,6 @@ class Program
                     Console.Write("Купить? (y/n): ");
                     if (Console.ReadLine().ToLower() == "y")
                     {
-                        
                         park.Add(lada);
                     }
                     else
@@ -59,8 +59,11 @@ class Program
                     break;
 
                 case "0":
+                    // Вызываем сохранение через отдельный класс
+                    Save_file.Save(park, "save.json");
+                    
                     isRunning = false;
-                    Console.WriteLine("До свидания!"); 
+                    Console.WriteLine("До свидания!");
                     break;
                 default:
                     Console.WriteLine("Неверный ввод. Попробуйте снова.");
