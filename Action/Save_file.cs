@@ -52,7 +52,8 @@ namespace Car_Dealership
 
             try
             {
-                string jsonString = File.ReadAllText(path);
+                // открывает по пути, читает полностью и записывает в переменную
+                string jsonString = File.ReadAllText(path); 
 
                 var options = new JsonSerializerOptions
                 {

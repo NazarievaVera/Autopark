@@ -33,7 +33,7 @@ class Program
                     Console.Write("Введите № машины для продажи: ");
                     // проверка на ввод
                     string input = Console.ReadLine();
-                    if (int.TryParse(input, out int numToDelete))
+                    if (int.TryParse(input, out int numToDelete)) // преобразуем строку в число
                     {
                         park.Delete(numToDelete);
                     }
@@ -61,7 +61,7 @@ class Program
                 case "0":
                     // Вызываем сохранение через отдельный класс
                     Save_file.Save(park, "save.json");
-                    
+
                     isRunning = false;
                     Console.WriteLine("До свидания!");
                     break;

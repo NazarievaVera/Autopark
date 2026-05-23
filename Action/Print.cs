@@ -1,4 +1,5 @@
 using Car_Dealership.Models;
+
 namespace Car_Dealership;
 
 public partial class AutoPark
