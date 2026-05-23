@@ -11,7 +11,7 @@ public partial class AutoPark
         if (info != null)
         {
             _balance += info.Price;
-            _vehicles.Remove(info);
+            _vehicles.Remove(info); // уделение 
 
             for (int i = 0; i < _vehicles.Count; i++)
             {
