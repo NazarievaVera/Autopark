@@ -1,10 +1,16 @@
 ﻿using Car_Dealership;
 using Car_Dealership.Models;
+using NLog;
 
 class Program
 {
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
     static void Main(string[] args)
     {
+        logger.Info("NLog работает!");
+        logger.Debug("Отладочное сообщение");
+
         AutoPark park = new AutoPark(10000000);
         park.InitCar();
 
@@ -45,21 +51,11 @@ class Program
                     break;
 
                 case "3":
-                    Console.WriteLine($"Предложение дилера: Легкова New Lada за 3 450 000");
-                    Console.Write("Купить? (y/n): ");
-                    if (Console.ReadLine().ToLower() == "y")
-                    {
-                        park.Add(lada);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Покупка отменена.");
-                    }
-
+                    ShowPurchaseMenu(park);
                     break;
 
                 case "0":
-                    // Вызываем сохранение через отдельный класс
+                    // вызываем сохранение через отдельный класс
                     Save_file.Save(park, "save.json");
 
                     isRunning = false;
@@ -67,6 +63,49 @@ class Program
                     break;
                 default:
                     Console.WriteLine("Неверный ввод. Попробуйте снова.");
+                    break;
+            }
+        }
+    }
+    static void ShowPurchaseMenu(AutoPark park)
+    {
+        bool inPurchaseMenu = true;
+        while (inPurchaseMenu)
+        {
+            Console.WriteLine("\n ПОКУПКА МАШИНЫ ");
+            Console.WriteLine("1. Случайное транспортное средство");
+            Console.WriteLine("2. Случайная легковая машина");
+            Console.WriteLine("3. Случайный грузовик");
+            Console.WriteLine("4. Случайный автобус");
+            Console.WriteLine("5. Назад в главное меню");
+            Console.Write("Выберите тип: ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    park.AddRandomVehicle();
+                    break;
+
+                case "2":
+                    park.AddRandomCar();
+                    break;
+
+                case "3":
+                    park.AddRandomTruck();
+                    break;
+
+                case "4":
+                    park.AddRandomBus();
+                    break;
+
+                case "5":
+                    inPurchaseMenu = false;  //выход из подменю
+                    break;
+
+                default:
+                    Console.WriteLine("Неверный выбор!");
                     break;
             }
         }

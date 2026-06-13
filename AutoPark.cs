@@ -14,7 +14,7 @@ public partial class AutoPark
         _balance = balance;
     }
 
-    public decimal Balance => _balance; // чтобы посмотреть
+    public decimal Balance => _balance; // чтобы посмотреть•
     public List<Info> Vehicles => _vehicles; // для чтения списка в файл
 
     public void LoadData(List<Info> vehicles, decimal balance)

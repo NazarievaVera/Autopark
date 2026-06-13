@@ -8,6 +8,7 @@ public partial class AutoPark
     public void Print()
     {
         Console.WriteLine("Ваш автопарк");
+        int index = 1;
         if (_vehicles.Count == 0)
         {
             Console.WriteLine("Пусто.");
@@ -16,10 +17,10 @@ public partial class AutoPark
         {
             foreach (var c in _vehicles)
             {
-                c.DisplayInfo();
+                Console.WriteLine($"{index++}. {c.Type.GetTypeName()} | {c.Model} ({c.Year} г.) | Цена: {c.Price:N0} руб.");
             }
         }
 
-        Console.WriteLine($"Баланс: {_balance} руб.");
+        Console.WriteLine($"Баланс: {_balance:N0} руб.");
     }
 }
