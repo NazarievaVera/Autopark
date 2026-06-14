@@ -18,7 +18,7 @@ public partial class AutoPark
                 _vehicles[i].SerialNumber = i + 1;
             }
 
-            Console.WriteLine($"Успешно продано: {info.Model}. Баланс: {_balance} руб.");
+            Console.WriteLine($"Успешно продано: {info.Model}. Баланс: {_balance:N0} руб.");
         }
         else
         {

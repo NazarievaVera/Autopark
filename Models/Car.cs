@@ -17,9 +17,7 @@ public class Car : Info
     public Car(string model, int year, decimal price) : base(model, year, price) {}
     [JsonConstructor]
     public Car(string internalId, int serialNumber, string model, decimal price, int year)
-        : base(internalId, serialNumber, model, price, year)
-    {
-    }
+        : base(internalId, serialNumber, model, price, year){}
     internal static Car Create(string model, int year, decimal price)
     {
         return new Car(model, year, price);

@@ -71,7 +71,7 @@ public partial class AutoPark
     public void AddRandomBus()
     {
         Bus bus = Creating_vechicle.GenerateRandomBus();
-        Console.WriteLine($"\n🚌 Случайный автобус: {bus.Model} ({bus.Year}) - {bus.Price:N0} руб.");
+        Console.WriteLine($"\nСлучайный автобус: {bus.Model} ({bus.Year}) - {bus.Price:N0} руб.");
         Console.Write("Купить? (y/n): ");
         if (Console.ReadLine()?.ToLower() == "y")
             Add(bus);

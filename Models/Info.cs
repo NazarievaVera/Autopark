@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 [JsonDerivedType(typeof(Car), typeDiscriminator: "Car")]
 [JsonDerivedType(typeof(Bus), typeDiscriminator: "Bus")]
 [JsonDerivedType(typeof(Truck), typeDiscriminator: "Truck")]
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
 public abstract class Info
 {
     [JsonInclude] public string InternalId { get; }
