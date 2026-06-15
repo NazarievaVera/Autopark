@@ -6,9 +6,12 @@ public partial class AutoPark
 {
     public void InitCar()
     {
+        logger.Info("Инициализация автопарка...");
         bool isLoaded = Save_file.Load(this, "save.json");
+        
         if (!isLoaded)
         {
+            logger.Warn("Файл save.json не найден. Создание нового автопарка с начальными машинами");
             Console.WriteLine("Сохранение не найдено. Создаем новый автопарк...");
             // Легковые
             _vehicles.Add(new Car("Toyota Camry", 2021, 8000000));
@@ -20,6 +23,13 @@ public partial class AutoPark
             // Грузовики
             _vehicles.Add(new Truck("Kamaz-6520", 2018, 5000000));
             _vehicles.Add(new Truck("Volvo FH", 2022, 9000000));
+            
+            logger.Info($"Создан новый автопарк: {_vehicles.Count} машин. Баланс: {_balance:N0} руб.");
+            logger.Debug($"Добавлено: 3 легковых, 2 автобуса, 2 грузовика");
+        }
+        else
+        {
+            logger.Info($"Автопарк загружен из save.json: {_vehicles.Count} машин. Баланс: {_balance:N0} руб.");
         }
     }
 }

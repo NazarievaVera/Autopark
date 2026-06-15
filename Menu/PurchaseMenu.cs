@@ -7,7 +7,7 @@ public class PurchaseMenu
         bool inPurchaseMenu = true;
         while (inPurchaseMenu)
         {
-            Console.WriteLine("\n=== ПОКУПКА МАШИНЫ ===");
+            Console.WriteLine("\n ПОКУПКА МАШИНЫ ");
             Console.WriteLine("1. Случайное транспортное средство");
             Console.WriteLine("2. Случайная легковая машина");
             Console.WriteLine("3. Случайный грузовик");

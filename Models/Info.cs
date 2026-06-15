@@ -2,6 +2,7 @@ namespace Car_Dealership.Models;
 
 using System.Threading;
 using System.Text.Json.Serialization;
+using NLog;
 
 [JsonDerivedType(typeof(Car), typeDiscriminator: "Car")]
 [JsonDerivedType(typeof(Bus), typeDiscriminator: "Bus")]
@@ -9,6 +10,8 @@ using System.Text.Json.Serialization;
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
 public abstract class Info
 {
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+    
     [JsonInclude] public string InternalId { get; }
     [JsonInclude] public int SerialNumber { get; set; }
     [JsonInclude] public string Model { get; }
@@ -26,6 +29,8 @@ public abstract class Info
         Model = model;
         Price = price;
         Year = year;
+        
+        logger.Debug($"Создан новый объект: {GetType().Name} | {Model} ({Year}) | ID: {InternalId} | №{SerialNumber}");
     }
 
     [JsonConstructor]
@@ -38,10 +43,13 @@ public abstract class Info
         Year = year;
 
         _nextSerialNumber = Math.Max(_nextSerialNumber, serialNumber);
+        
+        logger.Debug($"Загружен из JSON: {GetType().Name} | {Model} | ID: {InternalId} | №{SerialNumber}");
     }
 
     public void DisplayInfo()
     {
+        logger.Debug($"Вывод информации: {GetType().Name} №{SerialNumber} {Model}");
         Console.WriteLine($"№: {SerialNumber} {Type.GetTypeName()} | {Model} ({Year} г.) | Цена: {Price}");
     }
 

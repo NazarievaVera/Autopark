@@ -1,10 +1,13 @@
 using Car_Dealership.Models;
 namespace Car_Dealership.Parser;
+using NLog;
 
 public class MultipleVehiclesParser
 {
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
     public static void ParseAndAddMultiple(AutoPark park)
     {
+        logger.Info("Запущен массовый парсинг машин");
         Console.WriteLine("\nВведите данные о машинах (каждая с новой строки):");
         Console.WriteLine("Для завершения введите пустую строку или 'end'");
         Console.WriteLine();
@@ -24,10 +27,13 @@ public class MultipleVehiclesParser
 
         if (inputs.Count == 0)
         {
+            logger.Warn("Массовый парсинг отменён: пользователь ничего не ввёл");
             Console.WriteLine(" Ничего не введено!");
             return;
         }
 
+        logger.Info($"Введено строк для парсинга: {inputs.Count}");
+        
         var vehicles = new List<Info>();
         foreach (var input in inputs)
         {
@@ -37,6 +43,20 @@ public class MultipleVehiclesParser
                 vehicles.Add(vehicle);
             }
         }
+        
+        if (vehicles.Count == inputs.Count)
+        {
+            logger.Info($"Все строки успешно распарсены: {vehicles.Count} машин");
+        }
+        else if (vehicles.Count > 0)
+        {
+            logger.Warn($"Распарсено частично: {vehicles.Count} из {inputs.Count} (ошибок: {inputs.Count - vehicles.Count})");
+        }
+        else
+        {
+            logger.Error($"Не удалось распарсить ни одну строку из {inputs.Count}");
+        }
+        
         DisplayParsedVehicles(vehicles, inputs.Count);
 
         if (vehicles.Count > 0)
@@ -44,15 +64,17 @@ public class MultipleVehiclesParser
             Console.Write("\nДобавить все в автопарк? (y/n): ");
             if (Console.ReadLine()?.ToLower() == "y")
             {
+                logger.Info($"Пользователь согласился добавить {vehicles.Count} машин в автопарк");
                 foreach (var vehicle in vehicles)
                 {
                     park.Add(vehicle);
                 }
-
+                logger.Info($" Успешно добавлено {vehicles.Count} машин в автопарк");
                 Console.WriteLine($"Добавлено {vehicles.Count} машин!");
             }
             else
             {
+                logger.Info($"Пользователь отменил добавление {vehicles.Count} машин");
                 Console.WriteLine("Добавление отменено.");
             }
         }

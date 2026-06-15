@@ -1,10 +1,14 @@
 using Car_Dealership.Models;
 namespace Car_Dealership.Parser;
+using NLog;
 
 public static class SingleVehicleParser
 {
+    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
     public static void ParseAndAdd(AutoPark park)
     {
+        logger.Info("Запущен парсинг одной машины");
+        
         Console.WriteLine("\nВведите данные о машине:");
         Console.WriteLine("Формат: Тип: Модель (Год) - Цена руб.");
         Console.Write("> ");
@@ -13,6 +17,7 @@ public static class SingleVehicleParser
         
         if (string.IsNullOrWhiteSpace(input))
         {
+            logger.Warn("Парсинг отменён: пользователь ввёл пустую строку");
             Console.WriteLine("Пустой ввод!");
             return;
         }
@@ -26,15 +31,18 @@ public static class SingleVehicleParser
             Console.Write("\nДобавить в автопарк? (y/n): ");
             if (Console.ReadLine()?.ToLower() == "y")
             {
+                logger.Info($"Пользователь согласился добавить: {vehicle.Model} ({vehicle.Type.GetTypeName()})");
                 park.Add(vehicle);
             }
             else
             {
+                logger.Info($"Пользователь отменил добавление: {vehicle.Model} ({vehicle.Type.GetTypeName()})");
                 Console.WriteLine("Добавление отменено.");
             }
         }
         else
         {
+            logger.Warn($"Не удалось распарсить строку: '{input}'");
             Console.WriteLine("Не удалось распознать данные.");
         }
     }

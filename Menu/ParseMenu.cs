@@ -8,7 +8,7 @@ public class ParseMenu
         bool inParseMenu = true;
         while (inParseMenu)
         {
-            Console.WriteLine("\n=== ДОБАВЛЕНИЕ ЧЕРЕЗ ПАРСИНГ ===");
+            Console.WriteLine("\n ДОБАВЛЕНИЕ ЧЕРЕЗ ПАРСИНГ ");
             Console.WriteLine("1. Добавить одну машину из строки");
             Console.WriteLine("2. Добавить несколько машин (массовый парсинг)");
             Console.WriteLine("3. Показать примеры форматов");

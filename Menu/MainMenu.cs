@@ -10,7 +10,7 @@ public class MainMenu
 
         while (isRunning)
         {
-            Console.WriteLine("\n=== АВТОПАРК ===");
+            Console.WriteLine("\n АВТОПАРК ");
             Console.WriteLine("1. Посмотреть автопарк");
             Console.WriteLine("2. Продать машину (по №)");
             Console.WriteLine("3. Купить новую машину");
